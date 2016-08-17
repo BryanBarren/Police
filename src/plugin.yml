@@ -1,0 +1,55 @@
+name: Police
+main: me.bryan.Police.Main
+version: 1.0
+description: This plugin is made for McCities, and it used as a Police System
+author: Santa
+commands:
+  Bam:
+    description: Bams you!!
+    permission: policetools.bam
+  Duty:
+    description: If you're a police you'll enter
+    permission: policetools.duty
+  Promote:
+    description: Promotes a user to the next rank.
+    permission: policetools.promote
+  Demote:
+    description: Demotes player the the previous rank.
+    premission: policetools.demote
+  Wanted:
+    description: Lists wanted people, or sets a player as wanted.
+    permission: policetools.wanted
+permissions:
+  policetools.*:
+    description: Gives access to all Police permissions.
+    children:
+      policetools.bam: true
+      policetools.duty: true
+      policetools.wanted: true
+      policetools.promote: true
+      policetools.demote: true
+      policetools.cuffs: true
+      policetools.pick: true
+      policetools.tazer: true
+  policetools.bam:
+    description: Gives you permissions to bam someone
+    default: false
+  policetools.duty:
+    description: Gives you permission to go on duty
+    default: false
+  policetools.wanted:
+    description: Gives you permission to set someone as wanted
+    default: false
+  policetools.tazer:
+    description: Gives you permission to use a tazer
+    default: false
+  polictools.pick:
+    description: Gives you permission to use lockpick
+    default: true
+  policetools.promote:
+    description: Gives you permissions to promote a player
+    default: false
+  policetools.demote:
+    description: Gives you permissions to demote a player
+    default: false
+  

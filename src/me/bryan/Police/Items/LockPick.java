@@ -36,9 +36,9 @@ public class LockPick implements Listener{
 			if (p.getItemInHand().getItemMeta().getDisplayName()
 					.equalsIgnoreCase(ChatColor.color("&9LockPick"))) {
 				if (e.getPlayer().hasPermission("policetools.pick")) {
-					if(HandCuffs.cuffed.contains(e.getPlayer().getName())) {
+					if(HandCuffs.getCuffed().contains(e.getPlayer().getName())) {
 						if(r <= 0.3){
-						HandCuffs.cuffed.remove(e.getPlayer().getName());
+						HandCuffs.getCuffed().remove(e.getPlayer().getName());
 						e.getPlayer().sendMessage(ChatColor.color("&2You've broken out! Run free!"));
 						} else if(r <=0.7) {
 							e.getPlayer().getInventory().removeItem(lockPick);

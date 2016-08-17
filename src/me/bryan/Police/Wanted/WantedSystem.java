@@ -12,10 +12,26 @@ import me.bryan.Police.Main;
 
 public class WantedSystem implements Listener {
 	Main main;
-	public static HashMap<String, Integer> wanted = new HashMap<String, Integer>();
-	public static HashMap<String, Integer> wantedLevel = new HashMap<String, Integer>();
+	private static  HashMap<String, Integer> wanted = new HashMap<String, Integer>();
+	private static HashMap<String, Integer> wantedLevel = new HashMap<String, Integer>();
 	public WantedSystem(Main main) {
 		this.main = main;
+	}
+
+	public static HashMap<String, Integer> getWanted() {
+		return wanted;
+	}
+
+	public static void setWanted(HashMap<String, Integer> wanted) {
+		WantedSystem.wanted = wanted;
+	}
+
+	public static HashMap<String, Integer> getWantedLevel() {
+		return wantedLevel;
+	}
+
+	public static void setWantedLevel(HashMap<String, Integer> wantedLevel) {
+		WantedSystem.wantedLevel = wantedLevel;
 	}
 
 	@EventHandler

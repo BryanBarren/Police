@@ -16,7 +16,7 @@ public class Respawn implements Listener{
 	@EventHandler
 	public void onRespawn(PlayerRespawnEvent event) {
 		Player player = event.getPlayer();
-		if(Main.policeMode.contains(player.getName())) {
+		if(Main.getPoliceMode().contains(player.getName())) {
 			Main.loadInventory(player);
 			player.sendMessage("Your Police inventory has been restored.");
 		}

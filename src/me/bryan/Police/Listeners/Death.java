@@ -19,15 +19,16 @@ public class Death implements Listener {
 	public void onPlayerDeath(PlayerDeathEvent event) {
 		Player player = event.getEntity();
 		if (player instanceof Player) {
-			if (Main.policeMode.contains(player.getName())) {
+			if (Main.getPoliceMode().contains(player.getName())) {
 				Main.saveInventory(player);
 			}
 
-			if (WantedSystem.wanted.containsKey(player.getName())) {
-				WantedSystem.wanted.remove(player.getName());
+			if (WantedSystem.getWanted().containsKey(player.getName())) {
+				WantedSystem.getWanted().remove(player.getName());
 			}
-			if (WantedSystem.wantedLevel.containsKey(player.getName())) {
-				WantedSystem.wantedLevel.remove(player.getName());
+			if (WantedSystem.getWanted().containsKey(player.getName())) {
+				WantedSystem.getWantedLevel().remove(player.getName());
+				
 			}
 		}
 
