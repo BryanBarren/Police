@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import me.bryan.Police.Main;
+import me.bryan.Police.Commands.Police;
 import me.bryan.Police.utils.Freeze;
 import net.md_5.bungee.api.ChatColor;
 
@@ -48,7 +49,7 @@ public class HandCuffs implements Listener {
 				}
 			}
 		} else {
-			p.sendMessage("Not a player.");
+			p.sendMessage(Police.prefix + ChatColor.RED + "Not a player.");
 		}
 	}
 

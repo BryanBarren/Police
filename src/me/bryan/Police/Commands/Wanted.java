@@ -21,7 +21,7 @@ public class Wanted implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
-			//if (Main.getPoliceMode().contains(player.getName())) {
+			if (main.getConfig().getStringList("Police").contains(player.getName())) {
 				if (player.hasPermission("policetools.wanted")) {
 					if (args.length == 0) {
 						player.sendMessage("/wanted list: Gives out all players that is wanted");
@@ -30,7 +30,7 @@ public class Wanted implements CommandExecutor {
 					}
 					if (args[0].equalsIgnoreCase("list")) {
 						player.sendMessage(ChatColor.RED + "[WANTED]");
-						player.sendMessage(ChatColor.GOLD + "" + WantedSystem.getWantedLevel().keySet());
+						player.sendMessage(ChatColor.GOLD + "" + WantedSystem.getWanted().keySet());
 					} else if (args[0].equalsIgnoreCase("set")) {
 						if (args.length == 1) {
 							player.sendMessage(ChatColor.RED + "You must type a player name");
@@ -48,7 +48,7 @@ public class Wanted implements CommandExecutor {
 							player.sendMessage(ChatColor.RED + "Player null");
 							return true;
 						}
-						//WantedSystem.getWanted().put(message, 1);
+						WantedSystem.getWanted().put(player.getName(), 1);
 					} else {
 						player.sendMessage(ChatColor.RED + "Unknown argument!");
 					}
@@ -57,7 +57,7 @@ public class Wanted implements CommandExecutor {
 					player.sendMessage("You must be a policeman, or be on duty in order to use this command");
 				}
 			}
-		//}
+		}
 
 		return true;
 	}

@@ -100,6 +100,7 @@ public class Main extends JavaPlugin {
 		inv.addItem(new ItemStack[] { compass });
 		inv.addItem(new ItemStack[] { handcuffs });
 		inv.addItem(new ItemStack[] { tazer });
+		Tazer.guns.add(tazer);
 	}
 
 	public static void enterPolice(Player p) {

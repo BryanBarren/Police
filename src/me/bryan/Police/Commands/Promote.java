@@ -21,7 +21,7 @@ public class Promote implements CommandExecutor{
 			if(player.hasPermission("policetools.promote")) {
 				if(args.length == 1) {
 					Player target = Bukkit.getServer().getPlayer(args[0]);
-				Bukkit.dispatchCommand(sender, "jobs promote " +target.getName());
+				Bukkit.dispatchCommand(sender, "manuadd " +target.getName()+ "COP");
 				player.sendMessage("working");
 				} else {
 					player.sendMessage("Please input a player");

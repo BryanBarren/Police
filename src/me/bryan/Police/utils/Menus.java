@@ -14,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.Wool;
 import me.bryan.Police.Main;
+import me.bryan.Police.Items.HandCuffs;
 
 public class Menus implements Listener{
 	private Inventory inv;
@@ -51,11 +52,46 @@ public class Menus implements Listener{
 	}
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
+		Player p = (Player) event.getWhoClicked();
 		if(!event.getInventory().equals(inv)) return;
 		
 		if(event.getCurrentItem().getItemMeta().getDisplayName().contains("Murder")) {
-			//Needs to jail the criminal with Bukkit.dispatchCommand();
+			for(String name : HandCuffs.getCuffed()) {
+			Bukkit.dispatchCommand(p, "jail " + name + "15m");
+			HandCuffs.setCuffed(null);
+			}
 			
+		} else if(event.getCurrentItem().getItemMeta().getDisplayName().contains("Bank Robbery")) {
+			for(String name : HandCuffs.getCuffed()) {
+				Bukkit.dispatchCommand(p, "jail " + name + "15m");
+				HandCuffs.setCuffed(null);
+				}
+		}else if(event.getCurrentItem().getItemMeta().getDisplayName().contains("Robbery")) {
+			for(String name : HandCuffs.getCuffed()) {
+				Bukkit.dispatchCommand(p, "jail " + name + "15m");
+				HandCuffs.setCuffed(null);
+				}
+		}
+		else if(event.getCurrentItem().getItemMeta().getDisplayName().contains("Unlicenced Guns")) {
+			for(String name : HandCuffs.getCuffed()) {
+				Bukkit.dispatchCommand(p, "jail " + name + "5m");
+				HandCuffs.setCuffed(null);
+				}
+		} else if(event.getCurrentItem().getItemMeta().getDisplayName().contains("Tresspassing")) {
+			for(String name : HandCuffs.getCuffed()) {
+				Bukkit.dispatchCommand(p, "jail " + name + "10m");
+				HandCuffs.setCuffed(null);
+				}
+		}else if(event.getCurrentItem().getItemMeta().getDisplayName().contains("Assault")) {
+			for(String name : HandCuffs.getCuffed()) {
+				Bukkit.dispatchCommand(p, "jail " + name + "15m");
+				HandCuffs.setCuffed(null);
+				}
+		} else if(event.getCurrentItem().getItemMeta().getDisplayName().contains("Bank Robbery")) {
+			for(String name : HandCuffs.getCuffed()) {
+				Bukkit.dispatchCommand(p, "jail " + name + "10m");
+				HandCuffs.setCuffed(null);
+				}
 		}
 	}
 }

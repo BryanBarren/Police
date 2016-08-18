@@ -15,7 +15,7 @@ public class Police implements CommandExecutor{
 		this.main =main;
 	}
 	
-	public static String prefix =ChatColor.GOLD + "["+ChatColor.AQUA + "McCities"+ ChatColor.GOLD + "]"+ " ";
+	public static String prefix =ChatColor.BLACK + "["+ChatColor.GOLD + "Mc"+ChatColor.AQUA +"Cities"+ ChatColor.BLACK + "]"+ " ";
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if(sender instanceof Player) {
