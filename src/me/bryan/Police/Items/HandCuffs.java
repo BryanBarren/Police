@@ -35,14 +35,14 @@ public class HandCuffs implements Listener {
 		// THIS IS THE CRIMINAL
 		Entity entity = e.getRightClicked();
 		// IN BETWEEN THE 2 COMMENTS
-		if (e.getRightClicked() instanceof Player && (p.getItemInHand() != null) && (p.getItemInHand().hasItemMeta())
+		if (entity instanceof Player && (p.getItemInHand() != null) && (p.getItemInHand().hasItemMeta())
 				&& (p.getItemInHand().getItemMeta().hasDisplayName())) {
 			if (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase((ChatColor.AQUA + "Handcuffs"))) {
 				if (e.getPlayer().hasPermission("policetools.cuffs")) {
-					p.setPassenger(entity);
+					entity.setPassenger(entity);
 					cuffed.add(entity.getName());
 					main.getMenu().showJailInv(p);
-
+					e.getPlayer().sendMessage("w");
 				} else {
 					e.getPlayer().sendMessage(ChatColor.RED + "Report that you have this object to staff");
 				}

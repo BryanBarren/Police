@@ -27,7 +27,7 @@ public class Promote implements CommandExecutor{
 					player.sendMessage("Please input a player");
 				}
 			} else {
-				player.sendMessage(ChatColor.RED + "You don't have enough permissions.");
+				player.sendMessage(Police.prefix +ChatColor.RED + "No, bad boi "+ChatColor.GOLD+ "-Santa");
 			}
 		}
 		

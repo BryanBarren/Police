@@ -19,6 +19,10 @@ commands:
   Wanted:
     description: Lists wanted people, or sets a player as wanted.
     permission: policetools.wanted
+  Police:  
+    description: Adds player as a policeman
+    permission: policetools.policeadd
+  
 permissions:
   policetools.*:
     description: Gives access to all Police permissions.
@@ -31,6 +35,7 @@ permissions:
       policetools.cuffs: true
       policetools.pick: true
       policetools.tazer: true
+      policetools.policeadd: true
   policetools.bam:
     description: Gives you permissions to bam someone
     default: false
@@ -51,5 +56,8 @@ permissions:
     default: false
   policetools.demote:
     description: Gives you permissions to demote a player
+    default: false
+  policetools.policeadd:
+    description: Allows you to add police
     default: false
   

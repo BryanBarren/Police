@@ -11,6 +11,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 
 import me.bryan.Police.Main;
+import me.bryan.Police.Commands.Police;
 
 public class Tazer implements Listener {
 	protected HashMap<Player, Long> cooldown = new HashMap<Player, Long>();
@@ -25,9 +26,10 @@ public class Tazer implements Listener {
 	public void onInteract(PlayerInteractEntityEvent e) {
 		Player p = e.getPlayer();
 		if (e.getRightClicked() instanceof Player && (p.getItemInHand() != null) && (p.getItemInHand().hasItemMeta())
-				&& (p.getItemInHand().getItemMeta().hasDisplayName())) {
-			if (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.LIGHT_PURPLE + "Tazer")) {
+				&& (p.getItemInHand().equals(Main.tazer))) {
+			if (p.getItemInHand().equals(Main.tazer)) {
 				if (e.getPlayer().hasPermission("policetools.tazer")) {
+					e.getPlayer().sendMessage("w");
 					if (cooldown.containsKey(p.getName())) {
 						if (System.currentTimeMillis() >= cooldown.get(e.getPlayer()) + 2000) {
 							p.launchProjectile(Arrow.class);
@@ -38,9 +40,9 @@ public class Tazer implements Listener {
 							int timeLeftSec = (int) (timeLeftMillis / 1000) % 60;
 							if (timeLeftSec == 1) {
 								e.getPlayer().sendMessage(
-										"You cannot use this ability for " + timeLeftSec + " more second.");
+										Police.prefix +ChatColor.RED + "You cannot use this ability for " + ChatColor.GOLD + timeLeftSec +ChatColor.RED +  " more second.");
 						} else {
-							e.getPlayer().sendMessage("You cannot use this ability for " + timeLeftSec + " more seconds."); 
+							e.getPlayer().sendMessage(Police.prefix +"You cannot use this ability for " + timeLeftSec + " more seconds."); 
 							}
 						}
 					} else {
@@ -48,7 +50,7 @@ public class Tazer implements Listener {
 						cooldown.put(p, System.currentTimeMillis());
 					}
 				} else {
-					e.getPlayer().sendMessage("Report that you have this object to staff");
+					e.getPlayer().sendMessage(Police.prefix +ChatColor.RED + "Why da hell you have dis? Give this to "+ChatColor.GOLD + "Santa"+ ChatColor.RED + "ASAP");
 				}
 			}
 		}

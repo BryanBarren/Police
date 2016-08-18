@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import me.bryan.Police.Main;
+import me.bryan.Police.Commands.Police;
 import me.bryan.Police.utils.ChatColor;
 
 public class LockPick implements Listener{
@@ -30,25 +31,24 @@ public class LockPick implements Listener{
 	@EventHandler
 	public void onInteract(PlayerInteractEntityEvent e) {
 		Player p = e.getPlayer();
-		if (e.getRightClicked() instanceof Player 
-				&& (p.getItemInHand() != null) && (p.getItemInHand().hasItemMeta())
-				&& (p.getItemInHand().getItemMeta().hasDisplayName())) {
-			if (p.getItemInHand().getItemMeta().getDisplayName()
-					.equalsIgnoreCase(ChatColor.color("&9LockPick"))) {
+		//if (e.getRightClicked() instanceof Player 
+				//&& (p.getItemInHand() != null) && (p.getItemInHand().hasItemMeta())
+				//&& (p.getItemInHand().equals(lockPick))) {
+			if (p.getItemInHand().equals(lockPick)) {
 				if (e.getPlayer().hasPermission("policetools.pick")) {
 					if(HandCuffs.getCuffed().contains(e.getPlayer().getName())) {
 						if(r <= 0.3){
 						HandCuffs.getCuffed().remove(e.getPlayer().getName());
-						e.getPlayer().sendMessage(ChatColor.color("&2You've broken out! Run free!"));
+						e.getPlayer().sendMessage(ChatColor.color(Police.prefix + "&2You've broken out! Run free my birdie!!!"));
 						} else if(r <=0.7) {
 							e.getPlayer().getInventory().removeItem(lockPick);
 							e.getPlayer().updateInventory();
-							e.getPlayer().sendMessage("&4You're going to jail mate!");
+							e.getPlayer().sendMessage(Police.prefix + "&4You're going to jail mate!");
 						}
 					}
 					
 				} else {
-					e.getPlayer().sendMessage("Report that you have this object to staff");
+					e.getPlayer().sendMessage(Police.prefix + ChatColor.color("&4Why da hell you have dis, give it to &6Santa &4ASAP"));
 				}
 			}
 		}
@@ -56,4 +56,4 @@ public class LockPick implements Listener{
 	
 	
 
-}
+//}
