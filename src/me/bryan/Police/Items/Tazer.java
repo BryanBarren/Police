@@ -19,6 +19,7 @@ import me.bryan.Police.Commands.Police;
 
 public class Tazer implements Listener {
 	protected HashMap<Player, Long> cooldown = new HashMap<Player, Long>();
+    public static List<ItemStack> tazer = new ArrayList<ItemStack>();
 	Main pl;
 	public static List<ItemStack> guns = new ArrayList<ItemStack>();
 	public Tazer(Main pl) {
@@ -27,29 +28,38 @@ public class Tazer implements Listener {
 
 	@SuppressWarnings("deprecation")
 	@EventHandler
-	public void onInteract(PlayerInteractEvent e) {
-		Player p = e.getPlayer();
-		if (guns.contains(p.getItemInHand().equals(Main.tazer))&& e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-			p.sendMessage("working");
-			if (System.currentTimeMillis() >= cooldown.get(e.getPlayer()) + 2000) {
-				p.sendMessage("1");
-				p.launchProjectile(Arrow.class);
-				p.sendMessage("2");
-				cooldown.put(e.getPlayer(), System.currentTimeMillis());
-				p.sendMessage("3");
-			} else {
-				int timeLeftMillis =  (int) ((cooldown.get(e.getPlayer()) + 2000) - System.currentTimeMillis());
-				int timeLeftSec = (int) (timeLeftMillis / 1000) % 60;
-				if (timeLeftSec == 1) {
-					p.sendMessage(Police.prefix + ChatColor.RED + "You cannot use this ability for " + ChatColor.GOLD
-							+ timeLeftSec + ChatColor.RED + " more second.");
-				} else {
-					p.sendMessage(Police.prefix + "You cannot use this ability for " + timeLeftSec + " more seconds.");
-				}
-			}
-			}
-		
-	}
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+        if (pl.getConfig().getStringList("Police").contains(player.getName())) {
+            if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK){
+                ItemStack handsy = event.getPlayer().getItemInHand();
+                tazer.add(Main.tazer);
+                for(ItemStack itemRequired : tazer){
+                    if(handsy == itemRequired) {
+                        if(cooldown.containsKey(event.getPlayer())){
+                            if(System.currentTimeMillis() >= cooldown.get(event.getPlayer()) + 2000){
+                                player.launchProjectile(Arrow.class);
+                                cooldown.put(event.getPlayer(), System.currentTimeMillis());
+                            }else{
+                                long timeLeftMillis = ((cooldown.get(event.getPlayer()) + 2000) - System.currentTimeMillis());
+                                long timeLeftSec = (timeLeftMillis / 1000) % 60 ;
+                                if(timeLeftSec == 1){
+                                    event.getPlayer().sendMessage(Police.prefix+ "You cannot use this ability for " + timeLeftSec + " more second.");
+                                }else{
+                                    event.getPlayer().sendMessage(Police.prefix + "You cannot use this ability for " + timeLeftSec + " more seconds.");
+                                }
+                            }
+                        }else{
+                                player.launchProjectile(Arrow.class);
+                                cooldown.put(event.getPlayer(), System.currentTimeMillis());
+                        }
+                    }
+                }
+            }
+        } else {
+        	player.sendMessage(Police.prefix + ChatColor.RED + "You're not police BAD");
+        }
+    }
 
 	@SuppressWarnings("deprecation")
 	@EventHandler
@@ -60,7 +70,7 @@ public class Tazer implements Listener {
 				Player shooter = (Player) a.getShooter();
 				if (shooter.getItemInHand().getItemMeta().getDisplayName()
 						.equalsIgnoreCase(ChatColor.LIGHT_PURPLE + "Tazer")) {
-					event.setDamage(23921398);
+					event.setDamage(13);
 				}
 			}
 		}

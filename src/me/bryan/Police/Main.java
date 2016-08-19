@@ -83,7 +83,7 @@ public class Main extends JavaPlugin {
 		Inventory inv = p.getInventory();
 		inv.clear();
 
-		
+		Tazer.tazer.add(Main.tazer);
 
 		ItemMeta compassMeta = compass.getItemMeta();
 		ItemMeta handcuffsMeta = handcuffs.getItemMeta();
@@ -100,7 +100,6 @@ public class Main extends JavaPlugin {
 		inv.addItem(new ItemStack[] { compass });
 		inv.addItem(new ItemStack[] { handcuffs });
 		inv.addItem(new ItemStack[] { tazer });
-		Tazer.guns.add(tazer);
 	}
 
 	public static void enterPolice(Player p) {
