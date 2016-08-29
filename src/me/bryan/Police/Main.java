@@ -21,6 +21,7 @@ import me.bryan.Police.Commands.Police;
 import me.bryan.Police.Commands.Promote;
 import me.bryan.Police.Commands.Wanted;
 import me.bryan.Police.Items.HandCuffs;
+import me.bryan.Police.Items.LockPick;
 import me.bryan.Police.Items.Tazer;
 import me.bryan.Police.Listeners.Death;
 import me.bryan.Police.Listeners.Drops;
@@ -148,6 +149,7 @@ public class Main extends JavaPlugin {
 		Bukkit.getServer().getPluginManager().registerEvents(new Freeze(main), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new PickUP(main), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new Drops(main), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new LockPick(main), this);
 	}
 
 	public void registerCommands() {

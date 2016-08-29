@@ -32,17 +32,25 @@ public class Tazer implements Listener {
         Player player = event.getPlayer();
         if (pl.getConfig().getStringList("Police").contains(player.getName())) {
             if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK){
+            	player.sendMessage("8");
                 ItemStack handsy = event.getPlayer().getItemInHand();
                 tazer.add(Main.tazer);
+                player.sendMessage("5");
                 for(ItemStack itemRequired : tazer){
                     if(handsy == itemRequired) {
                         if(cooldown.containsKey(event.getPlayer())){
+                        	player.sendMessage("4");
                             if(System.currentTimeMillis() >= cooldown.get(event.getPlayer()) + 2000){
+                            	player.sendMessage("1");
                                 player.launchProjectile(Arrow.class);
+                            	player.sendMessage("2");
                                 cooldown.put(event.getPlayer(), System.currentTimeMillis());
+                                player.sendMessage("3");
                             }else{
                                 long timeLeftMillis = ((cooldown.get(event.getPlayer()) + 2000) - System.currentTimeMillis());
+                                player.sendMessage("6");
                                 long timeLeftSec = (timeLeftMillis / 1000) % 60 ;
+                                player.sendMessage("7");
                                 if(timeLeftSec == 1){
                                     event.getPlayer().sendMessage(Police.prefix+ "You cannot use this ability for " + timeLeftSec + " more second.");
                                 }else{
